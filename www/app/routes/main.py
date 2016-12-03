@@ -10,9 +10,9 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/register')
-def register():
-    return render_template('register.html')
+@main.route('/signup')
+def signup():
+    return render_template('signup.html')
 
 
 @main.route('/signin')
