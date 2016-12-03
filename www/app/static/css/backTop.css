@@ -1,0 +1,15 @@
+#backTop {
+    position:fixed;
+    bottom: 5%;
+    right: 5%;
+	width:95px;
+	height:145px;
+	background:url(../img/backtotop.gif) no-repeat;
+	background-position:0 0;	
+    cursor:pointer;
+    display:none;
+}
+
+#backTop:hover {
+    background-position: 0 -165px;
+}
