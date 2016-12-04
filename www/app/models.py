@@ -22,3 +22,8 @@ class User(db.Model):
         self.regTime = time.time()
         db.session.add(self)
 
+    def to_json(self):
+        json_user = self.__dict__.copy()
+        json_user['password'] = '******'
+        json_user.pop('_sa_instance_state')
+        return json_user
