@@ -26,3 +26,24 @@ class User(db.Model):
         json_user['password'] = '******'
         json_user.pop('_sa_instance_state')
         return json_user
+
+
+class Blog(db.Model):
+    __tablename__ = 'blogs'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(50), nullable=False)
+    content = db.Column(db.Text(), nullable=False)
+    pubTime = db.Column(db.Float)
+    user_id = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, title, content, uid):
+        self.title = title
+        self.content = content
+        self.pubTime = time.time()
+        self.user_id = uid
+
+    def to_json(self):
+        json_blog = self.__dict__.copy()
+        json_blog.pop('_sa_instance_state')
+        return json_blog

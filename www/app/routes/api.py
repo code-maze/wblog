@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Blueprint, jsonify, request
-from flask_restful import Api, Resource
+from flask_restful import abort, Api, Resource
 
 from ..models import db, User
 
@@ -14,7 +14,7 @@ api.init_app(api_blueprint)
 class Api_users(Resource):
     def get(self):
         users = User.query.all()
-        return jsonify(users=[u.to_json() for u in users])
+        return {'users': [u.to_json() for u in users]}
 
     def post(self):
         name = request.json.get('name')
@@ -22,13 +22,13 @@ class Api_users(Resource):
         password = request.json.get('password')
         user = User(name, email, password)
         db.session.add(user)
-        return jsonify(user=user)
+        return {'user': user.to_json()}
 
 
 class Api_user(Resource):
     def get(self, id):
         user = User.query.get_or_404(id)
-        return jsonify(user=user.to_json())
+        return {'user': user.to_json()}
 
     def put(self, id):
         user = User.query.get_or_404(id)
@@ -36,12 +36,12 @@ class Api_user(Resource):
         user.email = request.json.get('email')
         user.password = request.json.get('password')
         db.session.add(user)
-        return jsonify(user=user.to_json())
+        return {'user': user.to_json()}
 
     def delete(self, id):
         user = User.query.get_or_404(id)
         db.session.delete(user)
-        return jsonify(deleteId=id)
+        return {'deleteId': id}
 
 
 api.add_resource(Api_users, '/users')
