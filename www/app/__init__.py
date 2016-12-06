@@ -13,16 +13,11 @@ def create_app(config_name='default'):
     config[config_name].init_app(app)
     db.init_app(app)
 
-    # 测试用，初始化数据库
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
-        user = User('xhs', 'xhs@gmail.com', '123451')
-        db.session.add(user)
-
     from app.routes.main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     from app.routes.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+    from app.routes.api import api_blueprint
+    app.register_blueprint(api_blueprint)
     
     return app
