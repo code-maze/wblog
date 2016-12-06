@@ -16,6 +16,6 @@ if __name__ == '__main__':
                 num_str = str(randrange(1000000, 10000000))
                 db.session.add(User(num_str, num_str + '@qq.com', 'pwd' + num_str))
             for _ in range(10):
-                db.session.add(Blog('title ' * randint(3, 10), 'content ' * randint(50, 100), randint(1, 5)))
+                db.session.add(Blog('title ' * randint(3, 6), 'content ' * randint(50, 100), randint(1, 5)))
 
     app.run(host='0.0.0.0')

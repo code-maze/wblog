@@ -4,7 +4,7 @@
 from flask import Blueprint, jsonify, request
 from flask_restful import abort, Api, Resource
 
-from ..models import db, User
+from ..models import db, User, Blog
 
 api_blueprint = Blueprint('api', __name__, url_prefix='/api/v1.0')
 api = Api()
@@ -44,5 +44,39 @@ class Api_user(Resource):
         return {'deleteId': id}
 
 
+class Api_blogs(Resource):
+    def get(self):
+        blogs = Blog.query.all()
+        return {'blogs': [blog.to_json() for blog in blogs]}
+
+    def post(self):
+        title = request.json.get('title')
+        content = request.json.get('content')
+        user_id = request.json.get('user_id')
+        blog = Blog(title, content, user_id)
+        db.session.add(blog)
+        return {'blog': blog.to_json()}
+
+class Api_blog(Resource):
+    def get(self, id):
+        blog = Blog.query.get_or_404(id)
+        return {'blog': blog.to_json()}
+
+    def put(self, id):
+        blog = Blog.query.get_or_404(id)
+        title = request.json.get('title')
+        content = request.json.get('content')
+        user_id = request.json.get('user_id')
+        blog = Blog(title, content, user_id)
+        db.session.add(blog)
+        return {'blog': blog.to_json()}
+
+    def delete(self, id):
+        blog = Blog.query.get_or_404(id)
+        db.session.delete(blog)
+        return {'deleteId': id}
+
 api.add_resource(Api_users, '/users')
 api.add_resource(Api_user, '/user/<int:id>')
+api.add_resource(Api_blogs, '/blogs')
+api.add_resource(Api_blog, '/blog/<int:id>')
