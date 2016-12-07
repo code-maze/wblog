@@ -3,20 +3,33 @@
 
 from flask import Blueprint, jsonify, redirect, request, url_for
 
-from ..models import User
+from ..models import db, User
 
-auth = Blueprint('auth', __name__)
+auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth.route('/register', methods=['POST'])
 def register():
+    name = request.json.get('name')
+    email = request.json.get('email')
+    password = request.json.get('password')    
+    db.session.add(User(name, email, password))
+
     return redirect(url_for('main.index'))
 
 @auth.route('/authenticate', methods=['POST'])
 def authenticate():
-    name = request.form.get('name')
-    password = request.form.get('password')
+    name = request.json.get('name')
+    password = request.json.get('password')
     user = User.query.filter_by(name=name).first()
-    if not user or user.password != password:
-        return '登陆失败'
-    return '登陆成功'
+    if user and user.password == password:
+        return '登陆成功'
+    return '登陆失败'
     
+@auth.route('/isEmailExists', methods=['GET', 'POST'])
+def is_email_exists():
+    email = request.values.get('email')    
+    user = User.query.filter_by(email=email).first()
+    if user:
+        return jsonify(isExists=True, msg='email was exists')
+    else:
+        return jsonify(isExists=False, msg='email was not found')
