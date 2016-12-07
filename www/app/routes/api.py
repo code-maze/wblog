@@ -13,7 +13,9 @@ api.init_app(api_blueprint)
 
 class Api_users(Resource):
     def get(self):
-        users = User.query.all()
+        page = max(int(request.args.get('page', '1')), 1)
+        limit = int(request.args.get('size', '10'))
+        users = User.query.offset((page - 1) * limit).limit(limit)
         return {'users': [u.to_json() for u in users]}
 
     def post(self):
@@ -46,7 +48,9 @@ class Api_user(Resource):
 
 class Api_blogs(Resource):
     def get(self):
-        lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).all()
+        page = max(int(request.args.get('page', '1')), 1)
+        limit = int(request.args.get('size', '10'))
+        lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).offset((page - 1) * limit).limit(limit).all()
         return {'blogs': [dict(author=uname, **blog.to_json()) for blog, uname in lists]}
 
     def post(self):
