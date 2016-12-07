@@ -46,8 +46,8 @@ class Api_user(Resource):
 
 class Api_blogs(Resource):
     def get(self):
-        blogs = Blog.query.all()
-        return {'blogs': [blog.to_json() for blog in blogs]}
+        lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).all()
+        return {'blogs': [dict(author=uname, **blog.to_json()) for blog, uname in lists]}
 
     def post(self):
         title = request.json.get('title')
