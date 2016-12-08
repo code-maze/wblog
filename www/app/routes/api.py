@@ -14,9 +14,14 @@ api.init_app(api_blueprint)
 class Api_users(Resource):
     def get(self):
         page = max(int(request.args.get('page', '1')), 1)
-        limit = int(request.args.get('size', '10'))
+        limit = max(int(request.args.get('size', '10')), 1)
+        total = User.query.count()
+        max_page = total // limit + (1 if total % limit else 0)
         users = User.query.offset((page - 1) * limit).limit(limit)
-        return {'users': [u.to_json() for u in users]}
+        return {
+            'pagination': {'totalPage':max_page, 'currentPage': page}, 
+            'users': [u.to_json() for u in users]
+        }
 
     def post(self):
         name = request.json.get('name')
