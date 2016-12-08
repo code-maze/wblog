@@ -1,3 +1,30 @@
 {% extends 'layout.html' %}
 
 {% block title %}管理页面{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/css/admin.css" />
+{% endblock %}
+{% block content %}
+<div class="nav">
+    <ul>
+        <li class="fint out"><a href="1">用户</a></li>
+        <li class="fint"><a href="2">文章</a></li>
+        <li class="fint"><a href="3">作者</a></li>
+    </ul>
+</div>
+<table class="tabclass">
+    <thead class="theadhtml"></thead>
+    <tbody class="tbodyhtml"></tbody>
+</table>
+<nav>
+  <ul class="pagination">
+
+  </ul>
+</nav>
+{% endblock %}
+
+{%block script %}
+<script src="/static/js/admin.js"></script>
+<script src="/static/js/pagination.js"></script>
+{% endblock %}
