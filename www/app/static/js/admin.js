@@ -19,7 +19,7 @@ var admin = {
                 this.pagination = data.pagination;
                 callback();
             }
-        })
+        });
     },
     paintPagination: function () {
         let $pages = $('<ul class="pagination">');

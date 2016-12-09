@@ -54,9 +54,14 @@ class Api_user(Resource):
 class Api_blogs(Resource):
     def get(self):
         page = max(int(request.args.get('page', '1')), 1)
-        limit = int(request.args.get('size', '10'))
+        limit = max(int(request.args.get('size', '10')), 1)
+        total = Blog.query.count()
+        max_page = total // limit + (1 if total % limit else 0)
         lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).offset((page - 1) * limit).limit(limit).all()
-        return {'blogs': [dict(author=uname, **blog.to_json()) for blog, uname in lists]}
+        return {
+            'pagination': {'totalPage':max_page, 'currentPage': page}, 
+            'blogs': [dict(author=uname, **blog.to_json()) for blog, uname in lists]
+        }
 
     def post(self):
         title = request.json.get('title')
