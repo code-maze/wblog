@@ -1,60 +1,49 @@
-
-function moveGet(arr){
-    $.get(`/api/v1.0/${arr[0]}`, function (data) {
-        let list = data[arr[0]];
-        $(".theadhtml").html(arr[1]);
-        var h='';
-        for(var i in list){
-            var b=list[i];
-            h+=`<tr><td>${b[arr[2]]}</td><td>${b[arr[3]]}</td><td>${b[arr[4]]}</td></tr>`
-        } 
-         $(".tbodyhtml").html(h); 
-
-    })
-    }
-$(".nav>ul").on( 'mouseenter',"a",function(){
-    $(this).parent().siblings('.out').removeClass('out');
-    $(this).parent().addClass('out');
-    var score=$(this).attr('href');
-    if(score==='1'){
-        var arr=['users',`<tr><th>用户名</th><th>邮箱</th><th>创建时间</th></tr>`,'name','email','regTime'];
-        moveGet(arr);
-    }
-    else if(score==='2'){
-        var arr=['blogs',`<tr><th>标题</th><th>作者</th><th>发表时间</th></tr>`,'title','author','pubTime'];
-        moveGet(arr);
-    }
-    else if(score==='3'){
-   var arr=['blogs',`<tr><th>作者</th><th>内容</th><th>发表时间</th></tr>`,'author','content','pubTime'];
-        moveGet(arr);
-    }
-
-
-})
-
-$(function () {
-    var arr=['users',`<tr><th>用户名</th><th>邮箱</th><th>创建时间</th></tr>`,'name','email','regTime'];
-        moveGet(arr);
-})
-loadByPage(1);
-function loadByPage(pageNum){
-    $.ajax({
-        url: 'api/v1.0/users',
-        type: 'GET',
-        data: {pageNum:pageNum},
-    success:function(data) {
-        var html='';
-            for (var i = 1; i <= data.pagination.totalPage; i++) {
-                html+=`<li><a href="${i}">${i}</a></li>`;
+var admin = {
+    lists: null,
+    pagination: null,
+    init: function(type, page, size) {
+        this.type = type || 'users';
+        this.page = page || 1;
+        this.size = size || 10;
+        this.getData(() => {
+            this.paintTable.call(this);
+            this.paintPagination.call(this);
+        });
+    },
+    getData: function (callback) {
+        $.ajax({
+            url: `api/v1.0/${this.type}?page=${this.page}&size=${this.size}`,
+            success: (data) => { 
+                console.dir(arguments);
+                this.lists = data[this.type];
+                this.pagination = data.pagination;
+                callback();
             }
-
-            
-        $(".pagination").html(html);
-    }   
-    })
+        })
+    },
+    paintPagination: function () {
+        let $pages = $('<ul class="pagination">');
+        for (var i = 1, str = ''; i <= this.pagination.totalPage; i++) {
+            if (i == this.pagination.currentPage) {
+                str += `<li class="active"><a href="#">${i}</a></li>`;
+            } else {
+                str += `<li><a href="#">${i}</a></li>`;
+            }
+        }
+        $pages.html(str);
+        $('#pagination').html($pages);
+    },
+    paintTable: function() {
+        let $table = $('<table class="table table-striped table-hover">');
+        let str = '<tr><th>用户名</th><th>邮箱</th><th>注册时间</th></tr>';
+        for (let i = 0; i < this.lists.length; i++) {
+            let item = this.lists[i];
+            str += `<tr><td>${item["name"]}</td><td>${item["email"]}</td><td>${item["regTime"]}</td></tr>`;            
+        }
+        $table.html(str);
+        $('.table-responsive').html($table);
+    }
 }
-$("ul.pagination").on('click','a',function(e){
-   e.preventDefault();
-   var p=$(this).attr('href');
-   loadByPage(p);
-})
+
+
+admin.init();
