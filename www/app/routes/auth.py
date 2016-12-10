@@ -18,9 +18,9 @@ def register():
 
 @auth.route('/authenticate', methods=['POST'])
 def authenticate():
-    name = request.json.get('name')
+    email = request.json.get('email')
     password = request.json.get('password')
-    user = User.query.filter_by(name=name).first()
+    user = User.query.filter_by(email=email).first()
     if user and user.password == password:
         return '登陆成功'
     return '登陆失败'
