@@ -2,7 +2,7 @@
 * @Author: anchen
 * @Date:   2016-12-10 08:31:35
 * @Last Modified by:   anchen
-* @Last Modified time: 2016-12-10 12:00:24
+* @Last Modified time: 2016-12-10 20:33:21
 */
 
 'use strict';
@@ -16,59 +16,60 @@ function queryStringObj() {
     }
     return obj;
 }
-if(!Number.prototype.toDateTime){
-     var replaces = {
+
+if (!Number.prototype.toDateTime) {
+     let replaces = {
         'yyyy':function (dt) {
-            return dt.getFullYear().toString();
+            return dt.getFullYear();
         },
         'yy':function (dt) {
-            return (dt.getFullYear()%100).toString();
+            return dt.getFullYear() % 100;
         },
         'MM':function(dt){
-            var m=dt.getMonth()+1;
-            return m<10?('0'+m).toString():m.toString();
+            let m = dt.getMonth() + 1;
+            return (m < 10 ? '0' : '') + m;
         },
         'M':function(dt){
-            return dt.getMonth()+1;
+            return dt.getMonth() + 1;
         },
         'dd':function (dt) {
-            var d=dt.getDate();
-            return d<10?('0'+d).toString():d.toString();
+            let d = dt.getDate();
+            return (d < 10 ? '0' : '') + d;
         },
         'd':function (dt) {
             return dt.getDate();
         },
         'hh':function (dt) {
-            var h=dt.getHours();
-            return h<10?('0'+h).toString():h.toString();
+            let h = dt.getHours();
+            return (h < 10 ? '0' : '') + h;
         },
         'h':function (dt) {
             return dt.getHours();
         },
         'mm':function (dt) {
-            var m=dt.getMinutes();
-            return m<10?('0'+m).toString():m.toString();
+            let m = dt.getMinutes();
+            return (m < 10 ? '0' : '') + m;
         },
         'm':function (dt) {
             return dt.getMinutes();
         },
         'ss':function (dt) {
-            var s=dt.getSeconds();
-            return s<10?('0'+s).toString():s.toString();
+            let s = dt.getSeconds();
+            return (s < 10 ? '0' : '') + s;
         },
         's':function(dt){
             return dt.getSeconds();
         }
      };
-     var token=/([a-zA-Z]+)/;
-     Number.prototype.toDateTime=function(format){
-        var fmt=format||'yyyy-MM-dd hh:mm:ss';
-        var dt=new Date(this);
-        var arr=fmt.split(token);
-        for(var i=0;i<arr.length;i++){
-            var s=arr[i];
-            if(s && s in replaces){
-                arr[i]=replaces[s](dt);
+     let token = /([a-zA-Z]+)/;
+     Number.prototype.toDateTime = function(format){
+        let fmt = format || 'yyyy-MM-dd hh:mm:ss';
+        let dt = new Date(this);
+        let arr = fmt.split(token);
+        for(let i = 0; i < arr.length; i++){
+            let s = arr[i];
+            if (s && s in replaces) {
+                arr[i] = replaces[s](dt);
             }
         }
         return arr.join('');
