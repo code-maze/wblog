@@ -14,7 +14,6 @@ var admin = {
         $.ajax({
             url: `api/v1.0/${this.type}?page=${this.page}&size=${this.size}`,
             success: (data) => { 
-                console.dir(arguments);
                 this.lists = data[this.type];
                 this.pagination = data.pagination;
                 callback();
@@ -45,5 +44,5 @@ var admin = {
     }
 }
 
-
-admin.init();
+let qso = queryStringObj();
+admin.init(null, qso.page, qso.size);
