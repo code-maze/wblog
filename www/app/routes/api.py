@@ -13,10 +13,10 @@ api.init_app(api_blueprint)
 
 class Api_users(Resource):
     def get(self):
-        page = max(int(request.args.get('page', '1')), 1)
         limit = max(int(request.args.get('size', '10')), 1)
         total = User.query.count()
         max_page = total // limit + (1 if total % limit else 0)
+        page = min(max(int(request.args.get('page', '1')), 1), max_page)
         users = User.query.offset((page - 1) * limit).limit(limit)
         return {
             'pagination': {'totalPage':max_page, 'currentPage': page}, 
@@ -52,11 +52,11 @@ class Api_user(Resource):
 
 
 class Api_blogs(Resource):
-    def get(self):
-        page = max(int(request.args.get('page', '1')), 1)
+    def get(self):        
         limit = max(int(request.args.get('size', '10')), 1)
         total = Blog.query.count()
         max_page = total // limit + (1 if total % limit else 0)
+        page = min(max(int(request.args.get('page', '1')), 1), max_page)
         lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).offset((page - 1) * limit).limit(limit).all()
         return {
             'pagination': {'totalPage':max_page, 'currentPage': page}, 

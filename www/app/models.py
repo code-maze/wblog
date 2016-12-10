@@ -13,13 +13,14 @@ class User(db.Model):
     name = db.Column(db.String(50))
     email = db.Column(db.String(100),  nullable=False, unique=True, index=True)
     password = db.Column(db.String(50), nullable=False)
-    regTime = db.Column(db.Float)
+    regTime = db.Column(db.BigInteger)
 
     def __init__(self, name, email, password):
         self.name = name
         self.email = email
         self.password = password
-        self.regTime = time.time()
+        self.regTime = int(time.time() * 1000)
+        print(self.regTime)
 
     def to_json(self):
         json_user = self.__dict__.copy()
@@ -35,12 +36,12 @@ class Blog(db.Model):
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.Text(), nullable=False)
     pubTime = db.Column(db.Float)
-    user_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.BigInteger, nullable=False)
 
     def __init__(self, title, content, uid):
         self.title = title
         self.content = content
-        self.pubTime = time.time()
+        self.pubTime = int(time.time() * 1000)
         self.user_id = uid
 
     def to_json(self):
