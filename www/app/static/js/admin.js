@@ -9,6 +9,13 @@ var admin = {
             this.paintTable.call(this);
             this.paintPagination.call(this);
         });
+        $("#pagination").on('click','li',(e)=>{
+            e.preventDefault();
+            var $a = $(e.target);
+            this.page = $a.html();
+            this.getData(this.paintTable.bind(this));
+            $a.parent().addClass('active').siblings('.active').removeClass('active');  
+        });
     },
     getData: function (callback) {
         $.ajax({
