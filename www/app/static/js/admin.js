@@ -37,7 +37,7 @@ var admin = {
         let str = '<tr><th>用户名</th><th>邮箱</th><th>注册时间</th></tr>';
         for (let i = 0; i < this.lists.length; i++) {
             let item = this.lists[i];
-            str += `<tr><td>${item["name"]}</td><td>${item["email"]}</td><td>${item["regTime"]}</td></tr>`;            
+            str += `<tr><td>${item["name"]}</td><td>${item["email"]}</td><td>${item["regTime"].toDateTime()}</td></tr>`;           
         }
         $table.html(str);
         $('.table-responsive').html($table);
