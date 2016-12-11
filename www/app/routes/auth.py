@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Blueprint, jsonify, redirect, request, url_for
-
+from sqlalchemy import or_
 from ..models import db, User
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
@@ -11,10 +11,11 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 def register():
     name = request.json.get('name')
     email = request.json.get('email')
-    password = request.json.get('password')    
+    password = request.json.get('password')
+    if User.query.filter(or_(User.name == name, User.email == email)).count():
+        return jsonify(success=False, msg='used')
     db.session.add(User(name, email, password))
-
-    return redirect(url_for('main.index'))
+    return jsonify(success=True, msg='ok')
 
 @auth.route('/authenticate', methods=['POST'])
 def authenticate():
