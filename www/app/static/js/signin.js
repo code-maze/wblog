@@ -18,7 +18,7 @@ var signin = {
             }
         }).on('change','#email',(e)=>{
             let $target=$(e.target);
-            if ($target.validity.valid) {
+            if (e.target.validity.valid) {
                 $.ajax({
                     url: 'auth/isEmailExists?email=' + e.target.value,
                     success: function (email) {
@@ -34,10 +34,28 @@ var signin = {
                     }
                 })  
             }
-        }).on('focus','.form-control',(e)=>{
+        }).on('focus','.form-control',(e) => {
             var $input = $(e.target);
             $input.next().css({top:'-25px'});
-        });
+        }).on('click','#submit',(e) => {
+            e.preventDefault();
+            if (email.validity.valid && pwd.validity.valid) {
+                $.ajax({
+                    url: '/auth/authenticate',
+                    contentType: 'application/json;charset=utf-8',
+                    data: JSON.stringify({'email': email.value,'password': pwd.value}),
+                    type:'POST',
+                    success:function (data) {
+                        if (data.success){
+                            location = '/';
+                        } else {
+                            $("#pwd").next().html('密码错误')
+                                     .parent().removeClass('has-success').addClass('has-error');   
+                        }
+                    }
+                })
+            }
+        })
     }
 }
 signin.init();

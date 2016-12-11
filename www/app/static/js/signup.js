@@ -2,7 +2,7 @@
 * @Author: anchen
 * @Date:   2016-12-10 21:38:18
 * @Last Modified by:   anchen
-* @Last Modified time: 2016-12-11 15:22:15
+* @Last Modified time: 2016-12-11 16:39:19
 */
 
 'use strict';
@@ -61,7 +61,22 @@ var signup = {
         }).on('focus', '.form-control', (e) => {
             var $input = $(e.target);
             $input.next().css({top:'-25px'});
-        });
+        }).on('click','#submit',(e) => {
+            e.preventDefault();
+            if (username.validity.valid && email.validity.valid && upwd2.validity.valid) {
+                $.ajax({
+                    url: '/auth/register',
+                    contentType:'application/json;charset=utf-8',
+                    data:JSON.stringify({'name': username.value,'email': email.value,'password': upwd2.value}),
+                    type:'POST',
+                    success:function (data) {
+                        if (data.success) {
+                            location = '/';
+                        }
+                    }
+                })
+            }
+        })
     }
 }
 
