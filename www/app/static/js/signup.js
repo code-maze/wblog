@@ -2,7 +2,7 @@
 * @Author: anchen
 * @Date:   2016-12-10 21:38:18
 * @Last Modified by:   anchen
-* @Last Modified time: 2016-12-11 11:01:54
+* @Last Modified time: 2016-12-11 12:09:30
 */
 
 'use strict';
@@ -58,6 +58,9 @@ var signup = {
                             .parent().removeClass('has-error').addClass('has-success');
                 }
             }
+        }).on('focus', '.form-control', (e) => {
+            var $input = $(e.target);
+            $input.next().css({top:'-25px'});
         });
     }
 }
