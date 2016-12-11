@@ -2,7 +2,7 @@
 * @Author: anchen
 * @Date:   2016-12-10 21:38:18
 * @Last Modified by:   anchen
-* @Last Modified time: 2016-12-11 12:09:30
+* @Last Modified time: 2016-12-11 15:22:15
 */
 
 'use strict';
@@ -16,13 +16,13 @@ var signup = {
         $('form').on('keyup', '.form-control', (e) => {
             let target = e.target,
                 $target = $(e.target),
-                type = this.types[target.getAttribute('type')];
+                type = this.types[$target.attr('type')];
 
             if (target.validity.valueMissing) {
                 $target.next().html(`请输入${type}`)
                        .parent().removeClass('has-success').addClass('has-error');
             } else if (target.validity.tooShort) {
-                $target.next().html(`${type}最小长度为${target.getAttribute('minlength')}位`)
+                $target.next().html(`${type}最小长度为${$target.attr('minlength')}位`)
                        .parent().removeClass('has-success').addClass('has-error');
             } else if (target.validity.patternMismatch) {
                 $target.next().html(target.validationMessage)

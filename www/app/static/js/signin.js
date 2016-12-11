@@ -1,58 +1,44 @@
-$("#email").blur(function() {
-    var $this = $(this);
-    if(this.validity.valueMissing) {
-        $this.next().html("请输入邮箱");
-        $this.parent().addClass("has-error");
-    } else if(this.validity.patternMismatch) {
-        $this.next().html("请输入邮箱正确格式");
-        $this.parent().addClass("has-error");
-    } else {
-        $.ajax({
-        url: 'auth/isEmailExists?email=' + $('#email').val(),
-        success:function(data)  {
-                if(data.isExists)  {
-                    $this.parent().removeClass('has-error');
-                    $this.parent().addClass('has-success');
-                    $this.next().html('可以登录');
-                } else {
-                    $this.parent().addClass("has-error");
-                    $this.next().html('用户未注册');
-                } 
+'use strict';
+var signin = {
+    types:{
+        email:'邮箱',
+        password:'密码'
+    },
+    init: function () {
+        $('form').on('keyup','.form-control',(e)=>{
+            let target=e.target,
+                $target=$(e.target),
+                type=this.types[$target.attr('type')];
+            if (target.validity.valueMissing) {
+                $target.next().html(`请输入${type}`)
+                       .parent().removeClass('has-success').addClass('has-error');    
+            } else if (target.validity.patternMismatch) {
+                $target.next().html(target.validationMessage)
+                       .parent().removeClass('has-success').addClass('has-error');
             }
+        }).on('change','#email',(e)=>{
+            let $target=$(e.target);
+            if ($target.validity.valid) {
+                $.ajax({
+                    url: 'auth/isEmailExists?email=' + e.target.value,
+                    success: function (email) {
+                        if (email.isExists) {
+                            $target.next().html('欢迎回来')
+                                   .parent().removeClass('has-error')
+                                            .addClass('has-success');
+                        } else {
+                            $target.next().html(`邮箱未注册`)
+                                   .parent().removeClass('has-success')
+                                            .addClass('has-error');
+                        }
+                    }
+                })  
+            }
+        }).on('focus','.form-control',(e)=>{
+            var $input = $(e.target);
+            $input.next().css({top:'-25px'});
         });
     }
-});
+}
+signin.init();
 
-$("#pwd").blur(function()  {
-    var $this = $(this);
-    if (this.validity.valueMissing)  {
-        $this.next().html("请输入密码");
-        $this.parent().addClass("has-error");
-    } else {
-        $this.parent().removeClass("has-error");
-        $this.next().html("");
-        $this.parent().addClass("has-success");
-    };
-    
-});
-
-$("#submit").click(function(e) {
-    e.preventDefault();
-    var $this = $(this);
-    var email = $("#email").val();
-    console.log(email);
-    if ($(".form-group").hasClass("has-success")) {
-        $.ajax({
-            url: '/auth/authenticate',
-            type: 'POST',
-            contentType: "application/json; charset = utf-8",
-            data: JSON.stringify({"email": email,
-                   "password": "32r"
-                }),
-            success: function (data) {
-                console.log(data)
-            }
-        });
-    }
-        
-})
