@@ -23,8 +23,8 @@ def authenticate():
     password = request.json.get('password')
     user = User.query.filter_by(email=email).first()
     if user and user.password == password:
-        return '登陆成功'
-    return '登陆失败'
+        return jsonify(success=True, msg='ok')
+    return jsonify(success=False, msg='not match')
     
 @auth.route('/isEmailExists', methods=['GET', 'POST'])
 def is_email_exists():
