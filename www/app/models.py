@@ -20,7 +20,6 @@ class User(db.Model):
         self.email = email
         self.password = password
         self.regTime = int(time.time() * 1000)
-        print(self.regTime)
 
     def to_json(self):
         json_user = self.__dict__.copy()
