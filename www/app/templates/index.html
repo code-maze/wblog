@@ -3,11 +3,18 @@
 
 {% block title %}首页{% endblock %}
 
+{% block style %}
+<link rel="stylesheet" href="/static/css/index.css" />
+{% endblock %}
+
 {% block content %}
 
 {{ nav.show() }}
-<div style="height:2000px; width:100px;">
-    
+<div id='main' class='container'>
+
+
+
+
 </div>
 {% endblock %}
 
@@ -31,4 +38,7 @@
 }();
     
 </script>
+
+<script src="/static/js/common.js"></script>
+<script src="/static/js/index.js"></script>
 {% endblock %}

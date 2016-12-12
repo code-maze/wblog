@@ -1,0 +1,30 @@
+/* 
+* @Author: anchen
+* @Date:   2016-12-12 19:48:41
+* @Last Modified by:   anchen
+* @Last Modified time: 2016-12-12 21:09:59
+*/
+@charset "utf-8";
+/*通用*/
+.box{
+ 
+    margin:30px 0;
+    padding:15px; 
+    overflow:hidden;
+}
+#box_size{
+    font: 12px "microsoft yahei", Arial, Helvetica, sans-serif;
+    color:#aaa;
+    width:880px;
+    height:100px;
+    overflow:hidden;
+    display:inline-block;
+}
+
+.box img{
+    margin-left:20px;
+}
+.box span{
+    float:right;
+    margin-right:250px;
+}
