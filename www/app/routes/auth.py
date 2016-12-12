@@ -22,7 +22,7 @@ def authenticate():
     email = request.json.get('email')
     password = request.json.get('password')
     user = User.query.filter_by(email=email).first()
-    if user and user.password == password:
+    if user and user.verify_password(password):
         return jsonify(success=True, msg='ok')
     return jsonify(success=False, msg='not match')
     
