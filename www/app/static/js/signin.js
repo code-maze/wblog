@@ -15,6 +15,9 @@ var signin = {
             } else if (target.validity.patternMismatch) {
                 $target.next().html(target.validationMessage)
                        .parent().removeClass('has-success').addClass('has-error');
+            } else {
+                $target.next().html('欢迎登录')
+                       .parent().removeClass('has-error').addClass('has-success');
             }
         }).on('change','#email',(e)=>{
             let $target=$(e.target);
