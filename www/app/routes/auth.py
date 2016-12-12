@@ -14,8 +14,10 @@ def register():
     password = request.json.get('password')
     if User.query.filter(or_(User.name == name, User.email == email)).count():
         return jsonify(success=False, msg='used')
-    db.session.add(User(name, email, password))
-    return jsonify(success=True, msg='ok')
+    user = User(name, email, password)
+    db.session.add(user)
+    db.session.commit()
+    return user.signin(jsonify(success=True, msg='ok'))
 
 @auth.route('/authenticate', methods=['POST'])
 def authenticate():
@@ -23,7 +25,7 @@ def authenticate():
     password = request.json.get('password')
     user = User.query.filter_by(email=email).first()
     if user and user.verify_password(password):
-        return jsonify(success=True, msg='ok')
+        return user.signin(jsonify(success=True, msg='ok'))
     return jsonify(success=False, msg='not match')
     
 @auth.route('/isEmailExists', methods=['GET', 'POST'])

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import time
+from flask import current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.ext import db
 
@@ -33,9 +34,40 @@ class User(db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def signin(self, response, max_age=86400):
+        expires = str(int(time.time() + max_age))
+        s = '%s-%s-%s-%s' % (str(self.id), self.password_hash, expires, current_app.config['COOKIE_KEY'])
+        print('\nBS:', s)
+        L = [str(self.id), expires, generate_password_hash(s)]
+        
+        response.set_cookie(current_app.config['COOKIE_NAME'], '-'.join(L), max_age, httponly=True)
+        return response
+
+    @classmethod
+    def find_by_cookie(cls, cookie):
+        if not cookie:
+            return None
+        try:            
+            L = cookie.split('-')
+            if len(L) != 3:
+                return None
+            uid, expires, sha1 = L
+            if int(expires) < time.time():
+                return None
+            user = cls.query.get(int(uid))
+
+            if user is None:
+                return None
+            s = '%s-%s-%s-%s' % (str(uid), user.password_hash, expires, current_app.config['COOKIE_KEY'])
+            print('\nAS:', s)
+            if check_password_hash(sha1, s):
+                return user.to_json()
+            return None
+        except:
+            return None
+
     def to_json(self):
         json_user = self.__dict__.copy()
-        json_user.pop('password_hash')
         json_user.pop('_sa_instance_state')
         return json_user
 
