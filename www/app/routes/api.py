@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, g, jsonify, request
 from flask_restful import abort, Api, Resource
 
 from ..models import db, User, Blog
@@ -66,10 +66,11 @@ class Api_blogs(Resource):
     def post(self):
         title = request.json.get('title')
         content = request.json.get('content')
-        user_id = request.json.get('user_id')
-        blog = Blog(title, content, user_id)
-        db.session.add(blog)
-        return {'blog': blog.to_json()}
+        if title.strip() and content.strip() and g.user:            
+            blog = Blog(title, content, g.user.id)
+            db.session.add(blog)
+            return {'success': True, 'blog': blog.to_json()}
+        return {'success': False}
 
 class Api_blog(Resource):
     def get(self, id):
