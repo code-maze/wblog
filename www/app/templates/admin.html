@@ -4,20 +4,22 @@
 {% block title %}管理页面{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="/static/css/admin.css" />
+<link rel="stylesheet" href="/static/css/common.css" />
 {% endblock %}
 
 {% block content %}
 {{ nav.show('admin') }}
-<ol class="breadcrumb">
-  <li class="active"><a href="#">users</a></li>
-  <li ><a href="#">blogs</a></li>
-</ol>
-<div class="table-responsive">
+<div id='main' class='container'>
+    <ol class="breadcrumb">
+      <li class="active"><a href="#">users</a></li>
+      <li ><a href="#">blogs</a></li>
+    </ol>
+    <div class="table-responsive">
 
+    </div>
+    <nav id="pagination" class="text-center">
+    </nav>
 </div>
-<nav id="pagination" class="text-center">
-</nav>
 {% endblock %}
 
 {%block script %}
