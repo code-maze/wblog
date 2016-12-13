@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, jsonify, redirect, request, url_for
+from flask import Blueprint, current_app, jsonify, redirect, request, url_for
 from sqlalchemy import or_
 from ..models import db, User
 
@@ -27,6 +27,13 @@ def authenticate():
     if user and user.verify_password(password):
         return user.signin(jsonify(success=True, msg='ok'))
     return jsonify(success=False, msg='not match')
+
+@auth.route('/signout')
+def sign_out():
+    response = jsonify(success=True, msg='log out')
+    response.set_cookie(current_app.config['COOKIE_NAME'], '-deleted-', max_age=0, httponly=True)
+    return response
+
     
 @auth.route('/isEmailExists', methods=['GET', 'POST'])
 def is_email_exists():

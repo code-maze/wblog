@@ -2,7 +2,7 @@
 * @Author: anchen
 * @Date:   2016-12-10 08:31:35
 * @Last Modified by:   anchen
-* @Last Modified time: 2016-12-10 20:33:21
+* @Last Modified time: 2016-12-13 11:30:06
 */
 
 'use strict';
@@ -75,3 +75,15 @@ if (!Number.prototype.toDateTime) {
         return arr.join('');
     }
 }
+
+$(function () {
+    $('#logined-user').on('click', '.dropdown-menu a:contains(Sign Out)', function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/auth/signout',
+            success: function () {
+                $('#logined-user').parent().html('<li><a href="/signup">Sign Up</a></li><li><a href="/signin">Sign In</a></li>');
+            }
+        })
+    });
+})
