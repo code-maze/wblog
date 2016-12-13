@@ -67,7 +67,7 @@ class Api_blogs(Resource):
         title = request.json.get('title')
         content = request.json.get('content')
         if title.strip() and content.strip() and g.user:            
-            blog = Blog(title, content, g.user.id)
+            blog = Blog(title, content, g.user.get('id'))
             db.session.add(blog)
             return {'success': True, 'blog': blog.to_json()}
         return {'success': False}
