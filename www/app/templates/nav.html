@@ -13,8 +13,8 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                {% if active == 'index' %}<li class="active">{% else %}<li>{% endif %}<a href="/">Home Page</a></li>
-                {% if active == 'admin' %}<li class="active">{% else %}<li>{% endif %}<a href="/admin">Manage</a></li>
+                <li{% if active == 'index' %} class="active"{% endif %}><a href="/">Home Page</a></li>
+                <li{% if active == 'admin' %} class="active"{% endif %}><a href="/admin">Manage</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if g.user %}
@@ -23,7 +23,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">New Blog</a></li>
                         <li class="divider"></li>
-                        <li><a href="/signout">Sign Out</a></li>
+                        <li><a href="#">Sign Out</a></li>
                     </ul>
                 </li>
                 {% else %}

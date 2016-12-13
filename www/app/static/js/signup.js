@@ -1,10 +1,3 @@
-/* 
-* @Author: anchen
-* @Date:   2016-12-10 21:38:18
-* @Last Modified by:   anchen
-* @Last Modified time: 2016-12-11 16:39:19
-*/
-
 'use strict';
 var signup = {
     types: {

@@ -1,14 +1,14 @@
 'use strict';
 var signin = {
     types:{
-        email:'邮箱',
-        password:'密码'
+        email: '邮箱',
+        password: '密码'
     },
     init: function () {
-        $('form').on('keyup','.form-control',(e)=>{
-            let target=e.target,
-                $target=$(e.target),
-                type=this.types[$target.attr('type')];
+        $('form').on('keyup', '.form-control', (e) => {
+            let target = e.target,
+                $target = $(e.target),
+                type = this.types[$target.attr('type')];
             if (target.validity.valueMissing) {
                 $target.next().html(`请输入${type}`)
                        .parent().removeClass('has-success').addClass('has-error');    
@@ -19,27 +19,25 @@ var signin = {
                 $target.next().html('欢迎登录')
                        .parent().removeClass('has-error').addClass('has-success');
             }
-        }).on('change','#email',(e)=>{
-            let $target=$(e.target);
+        }).on('change', '#email', (e) => {
+            let $target = $(e.target);
             if (e.target.validity.valid) {
                 $.ajax({
                     url: 'auth/isEmailExists?email=' + e.target.value,
                     success: function (email) {
                         if (email.isExists) {
                             $target.next().html('欢迎回来')
-                                   .parent().removeClass('has-error')
-                                            .addClass('has-success');
+                                   .parent().removeClass('has-error').addClass('has-success');
                         } else {
                             $target.next().html(`邮箱未注册`)
-                                   .parent().removeClass('has-success')
-                                            .addClass('has-error');
+                                   .parent().removeClass('has-success').addClass('has-error');
                         }
                     }
                 })  
             }
-        }).on('focus','.form-control',(e) => {
+        }).on('focus', '.form-control', (e) => {
             var $input = $(e.target);
-            $input.next().css({top:'-25px'});
+            $input.next().css({top: '-25px'});
         }).on('click','#submit',(e) => {
             e.preventDefault();
             if (email.validity.valid && pwd.validity.valid) {
@@ -61,5 +59,5 @@ var signin = {
         })
     }
 }
-signin.init();
 
+signin.init();

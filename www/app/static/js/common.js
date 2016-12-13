@@ -1,10 +1,3 @@
-/* 
-* @Author: anchen
-* @Date:   2016-12-10 08:31:35
-* @Last Modified by:   anchen
-* @Last Modified time: 2016-12-13 11:30:06
-*/
-
 'use strict';
 // 返回一个查询字符串对象
 function queryStringObj() {

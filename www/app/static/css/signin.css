@@ -1,20 +1,14 @@
-/* 
-* @Author: anchen
-* @Date:   2016-12-11 10:53:20
-* @Last Modified by:   anchen
-* @Last Modified time: 2016-12-11 16:46:56
-*/
 .form-group{
     position: relative;
 }
-.form-group>.help-block{
+.form-group > .help-block{
     position:absolute;
     top:2px;
     left:15px;
     z-index: -100;
     transition:all 0.5s linear;
 }
-.form-group>.form-control{
+.form-group > .form-control{
     border: 0;
     border-bottom: 1px solid;
     opacity: .5;
