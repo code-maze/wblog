@@ -3,13 +3,14 @@
 {% block title %}欢迎登陆{% endblock %}
 
 {% block style %}
+<link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/signin.css" />
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h3 class="text-center">WELLCOME！</h3>
+<div class="container">    
     <form role="form">
+        <h3 class="text-center">WELLCOME！</h3>
         <div class="form-group">
             <input type="email" class="form-control" id="email" pattern="\w+@\w+?(\.\w{2,3}){1,2}" required >
             <span class="help-block">邮箱</span>

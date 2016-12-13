@@ -3,13 +3,14 @@
 {% block title %}欢迎注册{% endblock %}
 
 {% block style %}
+<link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/signin.css" />
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h3 class="text-center">用户注册页面</h3>
+<div class="container">    
     <form role="form">
+        <h3 class="text-center">用户注册页面</h3>
         <div class="form-group">
             <input id='username' class="form-control" type="text" name="username" minlength="2" maxlength="50" required/>
             <span class="help-block">请输入用户名</span>

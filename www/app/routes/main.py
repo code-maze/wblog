@@ -24,3 +24,6 @@ def signin():
 def admin():
     return render_template('admin.html')
 
+@main.route('/editor')
+def editor():
+    return render_template('editor.html')
