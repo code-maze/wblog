@@ -37,9 +37,7 @@ class User(db.Model):
     def signin(self, response, max_age=86400):
         expires = str(int(time.time() + max_age))
         s = '%s-%s-%s-%s' % (str(self.id), self.password_hash, expires, current_app.config['COOKIE_KEY'])
-        print('\nBS:', s)
-        L = [str(self.id), expires, generate_password_hash(s)]
-        
+        L = [str(self.id), expires, generate_password_hash(s)]        
         response.set_cookie(current_app.config['COOKIE_NAME'], '-'.join(L), max_age, httponly=True)
         return response
 
@@ -55,11 +53,9 @@ class User(db.Model):
             if int(expires) < time.time():
                 return None
             user = cls.query.get(int(uid))
-
             if user is None:
                 return None
             s = '%s-%s-%s-%s' % (str(uid), user.password_hash, expires, current_app.config['COOKIE_KEY'])
-            print('\nAS:', s)
             if check_password_hash(sha1, s):
                 return user.to_json()
             return None

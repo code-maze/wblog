@@ -8,8 +8,7 @@
 {% endblock %}
 
 {% block content %}
-
-{{ nav.show() }}
+{{ nav.show('index') }}
 <div id='main' class='container'>
 
 
@@ -20,25 +19,7 @@
 
 
 {% block script %}
-<script>
-+function () {
-    let beforeTop = $(document).scrollTop();
-    $(document).scroll(function(e) {
-        let $navbar = $('.navbar.navbar-default');
-        if (parseInt($navbar.css('top')) % 50 !== 0) {
-            return ;
-        }
-        if ($(document).scrollTop() - beforeTop > 0) {
-           $navbar.stop(true).animate({top: -50});
-        } else {
-            $navbar.stop(true).animate({top: 0});   
-        }
-        beforeTop = $(document).scrollTop();
-    });
-}();
-    
-</script>
-
 <script src="/static/js/common.js"></script>
 <script src="/static/js/index.js"></script>
+{{ nav.animate() }}
 {% endblock %}
