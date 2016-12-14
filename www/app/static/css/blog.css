@@ -1,0 +1,124 @@
+/*作者信息*/
+#total{
+    width:50%;
+    font-family:Arial,Helvetica,sans-serif;
+    margin:0 auto;
+    padding:0px;
+    color:#666;
+    
+}
+#hair{
+    margin-top:20px;
+    padding:20px 10px 10px;
+    border-bottom: 1px solid #EEEEEE;
+    height:90px;
+}
+#hair img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    float:left;
+    margin-right: 10px;
+    padding:2px;
+}
+#hair img:hover{
+    padding:0;
+    border:2px solid red;
+    float:left;
+}
+#hair a{
+    text-decoration: none;
+    color:#40AEDF;
+    text-align:left;
+    font-size:13px;
+    line-height:60px;
+}
+#hair a:hover{
+    color:#075B8D;
+}
+#hair .auttor{
+    border:1px solid #E78170;
+    color:#E78170;
+    font-size:13px;
+    display:inline-block;
+    border-radius:15%;
+}
+#hair p{
+    font-size:11px;
+    margin:6px;
+    display:inline-block;
+
+}
+.btn{
+    float:right;
+    margin-top:10px;
+}
+/*文章样式*/
+#main{
+    text-align:right;
+}
+#main h2{
+    text-align:center;
+    padding:10px 0px;
+}
+#main article{
+    margin-bottom: 50px;
+    text-align:left;
+    padding-top:5px;
+    font-size:16px;
+}
+#main span{
+    font-size:12px;
+    display: inline-block;
+    text-align:right;
+    padding-bottom:10px;
+    color:#999999;
+}
+/*评论区*/
+#lee{
+    padding:20px 0px 10px 0px;
+    font-size:13px;
+    border-bottom:1px solid #EEEEEE;
+    border-top:1px solid #EEEEEE;
+}
+#lee p{
+    display:inline-block;
+}
+#lee span{
+    float:right;
+}
+.media-left img{
+    width:50px;
+    height:50px;
+    border-radius:10%;
+    margin:5px;
+}
+#review .abc{
+    color:#999999;
+}
+#review .abc:hover{
+    color:#555555;
+}
+.media{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-bottom:1px solid #EEEEEE;
+}
+.media-body h4{
+    font-size:13px;
+    display:inline-block;
+}
+.media-body h4 a{
+    margin:0px 10px;
+}
+.media-body>.reply{
+    float:right;
+    color:#999999;
+}
+.media-body>.reply:hover{
+    color:#555555;
+    text-decoration:none;
+}
+.media-body div{
+    padding-top:10px;
+}
