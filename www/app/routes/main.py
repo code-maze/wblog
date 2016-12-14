@@ -27,3 +27,7 @@ def admin():
 @main.route('/editor')
 def editor():
     return render_template('editor.html')
+
+@main.route('/blog/<int:id>')
+def show_blog(id):
+    return render_template('blog.html')

@@ -8,6 +8,7 @@ $.ajax({
         var converter = new showdown.Converter();
 
         for(var i = 0; i < html.length; i++){
+            var id = html[i].id;
             var title = html[i].title;
             var content = converter.makeHtml(html[i].content);
             var author = html[i].author;
@@ -15,7 +16,7 @@ $.ajax({
             str += `
             <article>
                 <div class='box'>
-                    <h2><a href='#'>${title}</a></h2>
+                    <h2><a href='/blog/${id}'>${title}</a></h2>
                     <hr>
                     <div id='box_size'>
                         ${content}
