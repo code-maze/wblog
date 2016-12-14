@@ -1,6 +1,6 @@
 'use strict';
 var signin = {
-    types:{
+    types: {
         email: '邮箱',
         password: '密码'
     },
@@ -36,16 +36,15 @@ var signin = {
                 })  
             }
         }).on('focus', '.form-control', (e) => {
-            var $input = $(e.target);
-            $input.next().css({top: '-25px'});
+            $(e.target).next().css({top: '-25px'});
         }).on('click','#submit',(e) => {
             e.preventDefault();
             if (email.validity.valid && pwd.validity.valid) {
                 $.ajax({
+                    type: 'POST',
                     url: '/auth/authenticate',
                     contentType: 'application/json;charset=utf-8',
                     data: JSON.stringify({'email': email.value,'password': pwd.value}),
-                    type:'POST',
                     success:function (data) {
                         if (data.success){
                             location = '/';
@@ -54,9 +53,9 @@ var signin = {
                                      .parent().removeClass('has-success').addClass('has-error');   
                         }
                     }
-                })
+                });
             }
-        })
+        });
     }
 }
 

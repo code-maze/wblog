@@ -8,7 +8,6 @@
     font: 12px "microsoft yahei", Arial, Helvetica, sans-serif;
     color:#aaa;
     width:880px;
-    height:100px;
     overflow:hidden;
     display:inline-block;
 }
@@ -16,10 +15,7 @@
 .box img{
     margin-left:20px;
 }
-.box span{
-    float:right;
-    margin-right:250px;
-}
+
   #footer{
             
             width:100%;

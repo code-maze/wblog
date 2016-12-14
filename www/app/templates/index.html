@@ -4,6 +4,7 @@
 {% block title %}首页{% endblock %}
 
 {% block style %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/dracula.min.css">
 <link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/index.css" />
 <link rel="stylesheet" href="/static/css/BackTop.css" />
@@ -25,12 +26,11 @@
 
 
 {% block script %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.5.1/showdown.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 <script src="/static/js/common.js"></script>
 <script src="/static/js/index.js"></script>
 <script src="/static/js/backTop.js"></script>
-<script>
-    $.BackTop();
-</script>
-
+<script>$.BackTop();</script>
 {{ nav.animate() }}
 {% endblock %}
