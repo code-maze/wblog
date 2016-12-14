@@ -18,10 +18,10 @@ class Api_users(Resource):
         max_page = total // limit + (1 if total % limit else 0)
         page = min(max(int(request.args.get('page', '1')), 1), max_page)
         users = User.query.order_by(User.regTime.desc()).offset((page - 1) * limit).limit(limit).all()
-        return {
-            'pagination': {'totalPage':max_page, 'currentPage': page}, 
-            'users': [u.to_json() for u in users]
-        }
+        return jsonify(
+            pagination={'totalPage':max_page, 'currentPage': page}, 
+            users=[u.to_json() for u in users]
+        )
 
     def post(self):
         name = request.json.get('name')
@@ -29,13 +29,13 @@ class Api_users(Resource):
         password = request.json.get('password')
         user = User(name, email, password)
         db.session.add(user)
-        return {'user': user.to_json()}
+        return jsonify(user=user.to_json())
 
 
 class Api_user(Resource):
     def get(self, id):
         user = User.query.get_or_404(id)
-        return {'user': user.to_json()}
+        return jsonify(user=user.to_json())
 
     def put(self, id):
         user = User.query.get_or_404(id)
@@ -43,12 +43,12 @@ class Api_user(Resource):
         user.email = request.json.get('email')
         user.password = request.json.get('password')
         db.session.add(user)
-        return {'user': user.to_json()}
+        return jsonify(user=user.to_json())
 
     def delete(self, id):
         user = User.query.get_or_404(id)
         db.session.delete(user)
-        return {'deleteId': id}
+        return jsonify(deleteId=id)
 
 
 class Api_blogs(Resource):
@@ -58,10 +58,10 @@ class Api_blogs(Resource):
         max_page = total // limit + (1 if total % limit else 0)
         page = min(max(int(request.args.get('page', '1')), 1), max_page)
         lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).order_by(Blog.pubTime.desc()).offset((page - 1) * limit).limit(limit).all()
-        return {
-            'pagination': {'totalPage':max_page, 'currentPage': page}, 
-            'blogs': [dict(author=uname, **blog.to_json()) for blog, uname in lists]
-        }
+        return jsonify(
+            pagination={'totalPage':max_page, 'currentPage': page}, 
+            blogs=[dict(author=uname, **blog.to_json()) for blog, uname in lists]
+        )
 
     def post(self):
         title = request.json.get('title')
@@ -69,13 +69,16 @@ class Api_blogs(Resource):
         if title.strip() and content.strip() and g.user:            
             blog = Blog(title, content, g.user.get('id'))
             db.session.add(blog)
-            return {'success': True, 'blog': blog.to_json()}
-        return {'success': False}
+            return jsonify(success=True, blog=blog.to_json())
+        return jsonify(success=False)
 
 class Api_blog(Resource):
     def get(self, id):
-        blog = Blog.query.get_or_404(id)
-        return {'blog': blog.to_json()}
+        try:
+            blog, uname = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).filter(Blog.id == id).first()
+        except:
+            return dict(error=True, msg='blog not Found')
+        return jsonify(author=uname, **blog.to_json())
 
     def put(self, id):
         blog = Blog.query.get_or_404(id)
@@ -84,12 +87,12 @@ class Api_blog(Resource):
         user_id = request.json.get('user_id')
         blog = Blog(title, content, user_id)
         db.session.add(blog)
-        return {'blog': blog.to_json()}
+        return jsonify(blog=blog.to_json())
 
     def delete(self, id):
         blog = Blog.query.get_or_404(id)
         db.session.delete(blog)
-        return {'deleteId': id}
+        return jsonify(deleteId=id)
 
 api.add_resource(Api_users, '/users')
 api.add_resource(Api_user, '/user/<int:id>')
