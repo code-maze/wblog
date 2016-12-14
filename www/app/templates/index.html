@@ -6,6 +6,7 @@
 {% block style %}
 <link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/index.css" />
+<link rel="stylesheet" href="/static/css/BackTop.css" />
 {% endblock %}
 
 {% block content %}
@@ -18,5 +19,10 @@
 {% block script %}
 <script src="/static/js/common.js"></script>
 <script src="/static/js/index.js"></script>
+<script src="/static/js/backTop.js"></script>
+<script>
+    $.BackTop();
+</script>
+
 {{ nav.animate() }}
 {% endblock %}
