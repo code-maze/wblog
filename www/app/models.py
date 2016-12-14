@@ -15,7 +15,7 @@ class User(db.Model):
     name = db.Column(db.String(50))
     email = db.Column(db.String(100),  nullable=False, unique=True, index=True)
     password_hash = db.Column(db.String(128), nullable=False)
-    regTime = db.Column(db.BigInteger)
+    regTime = db.Column(db.BigInteger, index=True)
 
     def __init__(self, name, email, password):
         self.name = name
@@ -74,7 +74,7 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.Text(), nullable=False)
-    pubTime = db.Column(db.Float)
+    pubTime = db.Column(db.Float, index=True)
     user_id = db.Column(db.BigInteger, nullable=False)
 
     def __init__(self, title, content, uid):

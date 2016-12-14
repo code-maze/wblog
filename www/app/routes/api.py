@@ -17,7 +17,7 @@ class Api_users(Resource):
         total = User.query.count()
         max_page = total // limit + (1 if total % limit else 0)
         page = min(max(int(request.args.get('page', '1')), 1), max_page)
-        users = User.query.offset((page - 1) * limit).limit(limit)
+        users = User.query.order_by(User.regTime.desc()).offset((page - 1) * limit).limit(limit).all()
         return {
             'pagination': {'totalPage':max_page, 'currentPage': page}, 
             'users': [u.to_json() for u in users]
@@ -57,7 +57,7 @@ class Api_blogs(Resource):
         total = Blog.query.count()
         max_page = total // limit + (1 if total % limit else 0)
         page = min(max(int(request.args.get('page', '1')), 1), max_page)
-        lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).offset((page - 1) * limit).limit(limit).all()
+        lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).order_by(Blog.pubTime.desc()).offset((page - 1) * limit).limit(limit).all()
         return {
             'pagination': {'totalPage':max_page, 'currentPage': page}, 
             'blogs': [dict(author=uname, **blog.to_json()) for blog, uname in lists]
