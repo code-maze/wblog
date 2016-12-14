@@ -21,7 +21,7 @@ class Config(object):
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://moling:www-data@localhost/wblog'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://moling:www-data@localhost/wblog?charset=utf8'
 
 
 class ProductionConfig(Config):
