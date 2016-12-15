@@ -2,34 +2,28 @@
 $.ajax({
     url: 'api/v1.0/blogs',
     success:function(object){
-        var html = object.blogs;
+        var blogs = object.blogs;
         var str = '';
         showdown.setFlavor('github');
         var converter = new showdown.Converter();
 
-        for(var i = 0; i < html.length; i++){
-            var id = html[i].id;
-            var title = html[i].title;
-            var content = converter.makeHtml(html[i].content);
-            var author = html[i].author;
-            var pubTime = html[i].pubTime;
-            var pubTime1 = pubTime.toDateTime('yy/MM/dd');
-            var pubTime2 = pubTime.toDateTime('hh:mm');
+        for(var i = 0; i < blogs.length; i++){
+            var blog = blogs[i];
             str += `
             <li>
                 <div class="author-info">
-                <span><img class="author-img" src='/static/img/flowers${i}.jpg'></span>
-                    <span>${author}</span>
+                <span><img class="author-img" src='${blog.authorImg}'></span>
+                    <span>${blog.author}</span>
                     <time class="tmtime">                    
-                        <span>${pubTime1}</span>
-                        <span>${pubTime2}</span> 
+                        <span>${blog.pubTime.toDateTime('yy/MM/dd')}</span>
+                        <span>${blog.pubTime.toDateTime('hh:mm')}</span> 
                     </time>
                 </div>
                 
                 
                 <div class="tmlabel">
-                    <h2><a href='/blog/${id}'>${title}</a></h2>
-                    <p>${content}</p>
+                    <h2><a href='/blog/${blog.id}'>${blog.title}</a></h2>
+                    <p>${converter.makeHtml(blog.content)}</p>
                 </div>
             </li>
             `;           

@@ -57,10 +57,10 @@ class Api_blogs(Resource):
         total = Blog.query.count()
         max_page = total // limit + (1 if total % limit else 0)
         page = min(max(int(request.args.get('page', '1')), 1), max_page)
-        lists = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).order_by(Blog.pubTime.desc()).offset((page - 1) * limit).limit(limit).all()
+        lists = db.session.query(Blog, User.name, User.avatar).join(User, Blog.user_id == User.id).order_by(Blog.pubTime.desc()).offset((page - 1) * limit).limit(limit).all()
         return jsonify(
             pagination={'totalPage':max_page, 'currentPage': page}, 
-            blogs=[dict(author=uname, **blog.to_json()) for blog, uname in lists]
+            blogs=[dict(author=uName, authorImg=uImg, **blog.to_json()) for blog, uName, uImg in lists]
         )
 
     def post(self):
@@ -75,10 +75,10 @@ class Api_blogs(Resource):
 class Api_blog(Resource):
     def get(self, id):
         try:
-            blog, uname = db.session.query(Blog, User.name).join(User, Blog.user_id == User.id).filter(Blog.id == id).first()
+            blog, uname, uImg = db.session.query(Blog, User.name, User.avatar).join(User, Blog.user_id == User.id).filter(Blog.id == id).first()
         except:
             return dict(error=True, msg='blog not Found')
-        return jsonify(author=uname, **blog.to_json())
+        return jsonify(author=uname, authorImg=uImg, **blog.to_json())
 
     def put(self, id):
         blog = Blog.query.get_or_404(id)

@@ -15,12 +15,14 @@ class User(db.Model):
     name = db.Column(db.String(50))
     email = db.Column(db.String(100),  nullable=False, unique=True, index=True)
     password_hash = db.Column(db.String(128), nullable=False)
+    avatar = db.Column(db.String(256), default='')
     regTime = db.Column(db.BigInteger, index=True)
 
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, password, avatar='/static/img/avatar01.jpg'):
         self.name = name
         self.email = email
         self.password = password
+        self.avatar = avatar
         self.regTime = int(time.time() * 1000)
 
     @property
