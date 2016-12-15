@@ -29,8 +29,10 @@ var admin = {
         });
         $(".breadcrumb").on('click', 'a', (e) => {
             e.preventDefault();
-            var $a = $(e.target);
-            this.type = $a.html();
+            var $a = $(e.target);            
+            var $li = $a.parent().addClass('active').html(e.target.innerHTML).siblings('.active').removeClass('active');
+            $li.html(`<a href="#">${$li.html()}</a>`);
+            this.type = $a.text().trim();
             this.page = 1;
             this.getData(() => {
                 this.paintTable.call(this);
