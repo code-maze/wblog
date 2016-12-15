@@ -5,3 +5,26 @@
 .container form {
     margin-top: 100px;
 }
+
+#footer {
+    margin-top: 50px;
+    width:100%;
+    min-height:100px;
+    text-align: center;
+    background: #eee;
+    font-family: Arial;
+    font-size: 12px;
+    padding: 10px;
+    color: #aaa;
+}
+
+#footer > a {
+    margin: 5px 10px;
+    text-decoration: none;
+    color: #440;
+ }
+
+ #footer p {
+    margin: 10px;
+    padding: 0;
+ }
