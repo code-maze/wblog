@@ -1,15 +1,13 @@
-#main {
-    margin-top: 50px;
-}
-
-.container form {
+#main.container {
     margin-top: 100px;
+    margin-top: 50px;
+    min-height: calc(100vh - 200px);
 }
 
 #footer {
     margin-top: 50px;
     width:100%;
-    min-height:100px;
+    height:100px;
     text-align: center;
     background: #eee;
     font-family: Arial;
