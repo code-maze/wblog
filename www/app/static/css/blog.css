@@ -1,4 +1,4 @@
-/*作者信息*/
+/*/*作者信息*/
 #total{
     width:50%;
     font-family:Arial,Helvetica,sans-serif;
@@ -7,13 +7,13 @@
     color:#666;
     
 }
-#hair{
+.author-info {
     margin-top:20px;
     padding:20px 10px 10px;
     border-bottom: 1px solid #EEEEEE;
     height:90px;
 }
-#hair img{
+.author-info img{
     width:50px;
     height:50px;
     border-radius:50%;
@@ -21,29 +21,29 @@
     margin-right: 10px;
     padding:2px;
 }
-#hair img:hover{
+.author-info img:hover{
     padding:0;
     border:2px solid red;
     float:left;
 }
-#hair a{
+.author-info a{
     text-decoration: none;
     color:#40AEDF;
     text-align:left;
     font-size:13px;
     line-height:60px;
 }
-#hair a:hover{
+.author-info a:hover{
     color:#075B8D;
 }
-#hair .auttor{
+.author-info .auttor{
     border:1px solid #E78170;
     color:#E78170;
     font-size:13px;
     display:inline-block;
     border-radius:15%;
 }
-#hair p{
+.author-info p{
     font-size:11px;
     margin:6px;
     display:inline-block;
@@ -64,12 +64,10 @@
     padding-top:5px;
     font-size:16px;
 }
-#main span{
+#main .copy{
     font-size:12px;
-    display: inline-block;
-    text-align:right;
     padding-bottom:10px;
-    color:#999999;
+    color:#999;
 }
 /*评论区*/
 #lee{
@@ -118,4 +116,13 @@
 }
 .media-body div{
     padding-top:10px;
+}*/
+
+.blog-container {
+    margin: 0 auto;
+    width: 60%;
+}
+
+.article {
+    padding: 80px 40px 10px 40px;
 }
