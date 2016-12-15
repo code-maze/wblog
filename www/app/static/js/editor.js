@@ -2,7 +2,7 @@
 * @Author: anchen
 * @Date:   2016-12-13 19:38:04
 * @Last Modified by:   anchen
-* @Last Modified time: 2016-12-13 20:20:23
+* @Last Modified time: 2016-12-15 16:04:06
 */
 $('.btn').click(function(e) {
     e.preventDefault();
@@ -13,9 +13,9 @@ $('.btn').click(function(e) {
         type: 'POST',
         success: function (data) {
             if (data.success) {
-               location = '/';
+                location = '/';
             } else {
-               alert('提交失败');
+                alert('提交失败');
             }
         }
     });

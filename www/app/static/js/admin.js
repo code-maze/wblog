@@ -3,12 +3,12 @@ var admin = {
     pagination: null,
     types: {
         users: {
-            ths: '<tr><th>用户名</th><th>邮箱</th><th>注册时间</th></tr>' ,
-            tds: ['name','email','regTime']
+            ths: '<tr><th>用户名</th><th>邮箱</th><th>注册时间</th></tr>',
+            tds: ['name', 'email', 'regTime']
         },
         blogs: {
-            ths: '<tr><th>标题</th><th>作者</th><th>发布时间</th></tr>' ,
-            tds: ['title','author','pubTime']
+            ths: '<tr><th>标题</th><th>作者</th><th>发布时间</th></tr>',
+            tds: ['title', 'author','pubTime']
         }
 
     },
@@ -25,7 +25,7 @@ var admin = {
             var $a = $(e.target);
             this.page = $a.html();
             this.getData(this.paintTable.bind(this));
-            $a.parent().addClass('active').siblings('.active').removeClass('active');  
+            $a.parent().addClass('active').siblings('.active').removeClass('active');
         });
         $(".breadcrumb").on('click', 'a', (e) => {
             e.preventDefault();
@@ -57,8 +57,7 @@ var admin = {
         for (let i = 0; i < this.lists.length; i++) {
             let item = this.lists[i];
             let td = this.types[this.type].tds;
-            // debugger;
-            str += `<tr><td>${item[td[0]]}</td><td>${item[td[1]]}</td><td>${item[td[2]].toDateTime()}</td></tr>`;           
+            str += `<tr><td>${item[td[0]]}</td><td>${item[td[1]]}</td><td>${item[td[2]].toDateTime()}</td></tr>`;
         }
         $table.html(str);
         $('.table-responsive').html($table);

@@ -18,8 +18,7 @@ $.ajax({
                         <span>${blog.pubTime.toDateTime('yy/MM/dd')}</span>
                         <span>${blog.pubTime.toDateTime('hh:mm')}</span> 
                     </time>
-                </div>
-                
+                </div>               
                 
                 <div class="tmlabel">
                     <h2><a href='/blog/${blog.id}'>${blog.title}</a></h2>
