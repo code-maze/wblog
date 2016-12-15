@@ -69,6 +69,16 @@ if (!Number.prototype.toDateTime) {
     }
 }
 
+function getPaginationString(currentPage, totalPage) {
+    var str = '<ul class="pagination">',
+        active = '';
+    for (var i = 1; i <= totalPage; i++) {
+        active = (i === currentPage) ? ' class="active"' : '';
+        str += `<li${active}><a href="#">${i}</a></li>`;
+    }
+    return str + '</ul>';
+}
+
 $(function () {
     $('#logined-user').on('click', '.dropdown-menu a:contains(Sign Out)', function(event) {
         event.preventDefault();

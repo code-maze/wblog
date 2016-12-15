@@ -49,16 +49,7 @@ var admin = {
         });
     },
     paintPagination: function () {
-        let $pages = $('<ul class="pagination">');
-        for (var i = 1, str = ''; i <= this.pagination.totalPage; i++) {
-            if (i == this.pagination.currentPage) {
-                str += `<li class="active"><a href="#">${i}</a></li>`;
-            } else {
-                str += `<li><a href="#">${i}</a></li>`;
-            }
-        }
-        $pages.html(str);
-        $('#pagination').html($pages);
+        $('#pagination').html(getPaginationString(this.pagination.currentPage, this.pagination.totalPage));
     },
     paintTable: function() {
         let $table = $('<table class="table table-striped table-hover">');
