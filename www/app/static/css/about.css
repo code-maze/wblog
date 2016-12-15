@@ -1,0 +1,37 @@
+#main{
+    margin-top: 51px;
+    overflow: hidden;
+}
+#maze{
+    width: 450px;
+    height: 790px;
+    background: url(/static/img/code.jpg) no-repeat;
+    opacity: .8;
+    margin-top: 50px;
+    padding-top: 30px;
+    float:left;
+}
+#maze h1{
+    margin-left: 230px;
+    color:#fff;
+
+}
+.team{
+    float: left;
+    width:580px;
+    margin:50px 0 0 70px;
+    text-indent: 25px;
+}
+.team p{
+    font-size: 15px;
+    font-family: Microsoft YaHei;
+    color: #888;
+}
+.team b{
+    color:#3879D9;
+    font-size: 28px;
+}
+.team span{
+    color:#FF7A35;
+    font-size: 28px;
+}
