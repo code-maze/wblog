@@ -13,23 +13,20 @@ $.ajax({
             var content = converter.makeHtml(html[i].content);
             var author = html[i].author;
             var pubTime = html[i].pubTime;
+            var pubTime1 = pubTime.toDateTime('yyyy-MM-dd');
+            var pubTime2 = pubTime.toDateTime('hh:mm');
             str += `
-            <article>
-                <div class='box'>
-                    <h2><a href='/blog/${id}'>${title}</a></h2>
-                    <hr>
-                    <div id='box_size'>
-                        ${content}
-                    </div>
-                    <img src="/static/img/p3.png">
-                    <b>${author}</b>
-                    <span>${pubTime.toDateTime()}</span>
+            <li>
+               <time class="tmtime"><span>${pubTime1}</span><span>${pubTime2}</span>  <span>${author}</span></time>
+                <div class="tmlabel">
+                    <h2>${title}</h2>
+                    <p>${content}</p>
                 </div>
-            </article>
+            </li>
             `;           
         }
 
-        $('#main').html(str);
+        $('#main div.main ul').html(str);
         $('pre code').each(function(i, block) {
             hljs.highlightBlock(block);
         });

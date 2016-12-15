@@ -4,7 +4,6 @@
 {% block title %}首页{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="/static/css/lib/dracula.min.css">
 <link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/index.css" />
 <link rel="stylesheet" href="/static/css/BackTop.css" />
@@ -13,6 +12,14 @@
 {% block content %}
 {{ nav.show('index') }}
 <div id='main' class='container'>
+    <header class="clearfix">
+        <h1>Responsive Timeline</h1>
+    </header>
+    <div class="main">
+        <ul class="tmtimeline">
+            
+        </ul>
+    </div>
 </div>
 <div id='footer' class="text-center">
     <a href="">About Us</a>
@@ -31,6 +38,16 @@
 <script src="/static/js/common.js"></script>
 <script src="/static/js/index.js"></script>
 <script src="/static/js/backTop.js"></script>
-<script>$.BackTop();</script>
+<script>
+    $.BackTop();
+</script>
+
 {{ nav.animate() }}
+<script>
+$(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+      });
+});
+</script>
 {% endblock %}
