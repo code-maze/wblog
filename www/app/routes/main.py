@@ -23,6 +23,10 @@ def signin():
 def admin():
     return render_template('admin.html')
 
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
 @main.route('/editor')
 def editor():
     if g.user:
