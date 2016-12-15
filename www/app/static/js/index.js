@@ -19,7 +19,7 @@ $.ajax({
             <li>
                <time class="tmtime">
                    <span>${author}</span>
-                   <img src='/static/img/flowers.jpg' style='width:150px;height:100px;'>
+                   <img src='/static/img/flowers${i}.jpg' style='width:150px;height:100px;'>
                    <span>${pubTime1}</span>
                    <span>${pubTime2}</span> 
                 </time>
