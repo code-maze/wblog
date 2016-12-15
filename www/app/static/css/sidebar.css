@@ -2,7 +2,7 @@
 * @Author: anchen
 * @Date:   2016-12-08 21:41:14
 * @Last Modified by:   anchen
-* @Last Modified time: 2016-12-15 16:00:19
+* @Last Modified time: 2016-12-15 19:22:51
 */
 #sidebar{
     width: 70px;
@@ -40,7 +40,7 @@
     width:240px;
     height:185px;
     position:absolute;
-    left:-260px;
+    left:-240px;
     bottom:0px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -58,7 +58,7 @@ li > div > ul{
     list-style: none;
 }
 .sidebar .moveleft{
-    left:-130px;
+    left:-120px;
     top:130px;
     width:100px;
     height:100px;
