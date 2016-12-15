@@ -17,7 +17,7 @@ $.ajax({
             var pubTime2 = pubTime.toDateTime('hh:mm');
             str += `
             <li>
-               <time class="tmtime"><span>${pubTime1}</span><span>${pubTime2}</span>  <span>${author}</span></time>
+               <time class="tmtime"><span>${author}</span><img src='/static/img/flower.jpg'><span>${pubTime1}</span><span>${pubTime2}</span>  </time>
                 <div class="tmlabel">
                     <h2>${title}</h2>
                     <p>${content}</p>
