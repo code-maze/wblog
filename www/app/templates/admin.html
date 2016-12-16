@@ -6,15 +6,14 @@
 {% block style %}
 <link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/admin.css" />
-<link rel="stylesheet" href="/static/css/sidebar.css" />
 {% endblock %}
 
 {% block content %}
 {{ nav.show('admin') }}
 <div id='main' class='container'>
     <ol class="breadcrumb">
-        <li class="active"><a href="#">users</a></li>
-        <li ><a href="#">blogs</a></li>
+        <li class="active"><i class="fa fa-user-circle-o" aria-hidden="true"></i> users</li>
+        <li ><a href="#"><i class="fa fa-book" aria-hidden="true"></i> blogs</a></li>
     </ol>
     <div class="table-responsive">
 
@@ -22,75 +21,10 @@
     <nav id="pagination" class="text-center">
     </nav>
 </div>
-<div id="sidebar">
-    <ul class="sidebar">
-        <li>
-            <p></p>
-            <div>
-                <ul>
-                    <li><b>姓名：</b><span>李粤强</span></li>
-                    <li><b>年龄：</b><span>25</span></li>
-                    <li><b>籍贯：</b><span>广东</span></li>
-                    <li><b>爱好：</b><span>写代码</span></li>
-                    <li><b>负则板块：</b><span>编写需求文档、所有后台搭建</span></li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <p></p>
-            <div>
-                <ul>
-                    <li><b>姓名：</b><span>林凡</span></li>
-                    <li><b>年龄：</b><span>25</span></li>
-                    <li><b>籍贯：</b><span>湖北荆州</span></li>
-                    <li><b>爱好：</b><span>玩游戏、睡觉</span></li>
-                    <li><b>负则板块：</b><span>首页、导航栏插件</span></li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <p></p>
-            <div>
-                <ul>
-                    <li><b>姓名：</b><span>蒋苏</span></li>
-                    <li><b>年龄：</b><span>22</span></li>
-                    <li><b>籍贯：</b><span>湖北咸宁</span></li>
-                    <li><b>爱好：</b><span>睡觉、吃好吃的、玩游戏</span></li>
-                    <li><b>负则板块：</b><span>管理页、侧边栏、回到顶部插件，分页插件</span></li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <p></p>
-            <div>
-                <ul>
-                    <li><b>姓名：</b><span>胡俊</span></li>
-                    <li><b>年龄：</b><span>25</span></li>
-                    <li><b>籍贯：</b><span>湖南常德</span></li>
-                    <li><b>爱好：</b><span>写代码、吃槟榔、玩游戏、睡觉</span></li>
-                    <li><b>负则板块：</b><span>注册页、登陆页</span></li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <p></p>
-            <div>
-                <ul>
-                    <li><b>姓名：</b><span>赵旭</span></li>
-                    <li><b>年龄：</b><span>22</span></li>
-                    <li><b>籍贯：</b><span>湖北随州</span></li>
-                    <li><b>爱好：</b><span>吃+睡+上知乎</span></li>
-                    <li><b>负则板块：</b><span>文章发表页</span></li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-</div> 
 {% endblock %}
 
 {%block script %}
 <script src="/static/js/common.js"></script>
 <script src="/static/js/admin.js"></script>
-<script src="/static/js/sidebar.js"></script>
 {{ nav.animate() }}
 {% endblock %}
