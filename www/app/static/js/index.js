@@ -19,19 +19,25 @@ $.ajax({
                         <span>${blog.pubTime.toDateTime('hh:mm')}</span> 
                     </time>
                 </div>               
-                
                 <div class="tmlabel">
                     <h2><a href='/blog/${blog.id}'>${blog.title}</a></h2>
-                    <p>${converter.makeHtml(blog.content)}</p>
+                    ${converter.makeHtml(blog.content)} 
+
+                    
                 </div>
             </li>
             `;           
         }
-
         $('#main div.main ul').html(str);
         $('pre code').each(function(i, block) {
             hljs.highlightBlock(block);
         });
+        $(".tmlabel").each(function(){
+             $(this).children('*:gt(3)').remove();
+             $(this).append('<p>....<p><a href="" class="pull-right">阅读全文...</a>');
+        });
+        
+        $("#main").fadeIn();
     }
 });
 
