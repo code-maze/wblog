@@ -14,6 +14,7 @@ var blog_view = {
         var converter = new showdown.Converter();
         var str = `        
         <div class="author-info">
+            <img src="${blog.authorImg}" alt="author-pic" />
             <span class="auttor">作者</span>
             <a href="#">${blog.author}</a>
             <p>${blog.pubTime.toDateTime('yyyy.MM.dd')}</p>
