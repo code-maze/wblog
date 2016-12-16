@@ -4,26 +4,37 @@ body{
     -webkit-background-size: cover;
     background-size: cover;
 }
-.table-striped>tbody>tr:nth-child(even){
-    background-color:#DBF0FC;
+
+.table-responsive {
+    min-height: 427px;
 }
-.table-striped>tbody>tr:nth-child(odd){
-    background-color:#fff;
+
+.table-striped > tbody > tr:nth-child(even) {
+    background-color: #DBF0FC;
 }
-.table-striped{
+
+.table-striped > tbody > tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.table-striped {
+    text-align: center;
+}
+
+.table-striped th {
     text-align:center;
 }
-.table-striped th{
-    text-align:center;
-}
-#main ol.breadcrumb{
+
+#main ol.breadcrumb {
     margin-top: 30px;
     margin-bottom: 0px;
     font-size: 20px;
 }
-.breadcrumb a{
+
+.breadcrumb a {
     text-decoration: none;
 }
-.breadcrumb a:hover{
+
+.breadcrumb a:hover {
     color:#333;
 }
