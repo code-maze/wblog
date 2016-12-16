@@ -5,6 +5,10 @@ var signin = {
         password: '密码'
     },
     init: function () {
+        $(':input').each(function (index, elem) {
+            elem.value = '';
+        });
+        
         $('form').on('keyup', '.form-control', (e) => {
             let target = e.target,
                 $target = $(e.target),

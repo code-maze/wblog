@@ -8,19 +8,22 @@
 {% endblock %}
 
 {% block content %}
-<div id="main" class="container">    
-    <form role="form">
-        <h3 class="text-center">WELLCOME！</h3>
-        <div class="form-group">
-            <input type="email" class="form-control" id="email" pattern="\w+@\w+?(\.\w{2,3}){1,2}" required >
-            <span class="help-block"><i class="fa fa-envelope-square" aria-hidden="true"></i> 邮箱</span>
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" id="pwd"  required>
-            <span class="help-block"><i class="fa fa-unlock-alt" aria-hidden="true"></i> 密码</span>
-        </div>
-        <button id="submit" class="btn btn-default"><i class="fa fa-sign-in" aria-hidden="true"></i> 登录</button>
-    </form>
+<div id="main" class="container">
+    <div class="row">
+        <form role="form" class="col-xs-12 col-md-6 col-md-offset-3">
+            <h3 class="text-center">WELLCOME！</h3>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" pattern="\w+@\w+?(\.\w{2,3}){1,2}" required >
+                <span class="help-block"><i class="fa fa-envelope-square" aria-hidden="true"></i> 邮箱</span>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="pwd"  required>
+                <span class="help-block"><i class="fa fa-unlock-alt" aria-hidden="true"></i> 密码</span>
+            </div>
+            <button id="submit" class="btn btn-default"><i class="fa fa-sign-in" aria-hidden="true"></i> 登录</button>
+            <a href="/signup" class="btn btn-default pull-right">注册</a>
+        </form>
+    </div>
 </div>
 {% endblock %}
 
