@@ -85,7 +85,10 @@ $(function () {
         $.ajax({
             url: '/auth/signout',
             success: function () {
-                $('#logined-user').parent().html('<li><a href="/signup">Sign Up</a></li><li><a href="/signin">Sign In</a></li>');
+                $('#logined-user').parent().html(`
+                    <li><a href="/signup"><i class="fa fa-registered" aria-hidden="true"></i> Sign Up</a></li>
+                    <li><a href="/signin"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
+                    `);
             }
         })
     });
