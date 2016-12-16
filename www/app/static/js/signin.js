@@ -4,11 +4,7 @@ var signin = {
         email: '邮箱',
         password: '密码'
     },
-    init: function () {
-        $(':input').each(function (index, elem) {
-            elem.value = '';
-        });
-        
+    init: function () {        
         $('form').on('keyup', '.form-control', (e) => {
             let target = e.target,
                 $target = $(e.target),
