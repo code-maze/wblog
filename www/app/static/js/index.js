@@ -21,9 +21,7 @@ $.ajax({
                 </div>               
                 <div class="tmlabel">
                     <h2><a href='/blog/${blog.id}'>${blog.title}</a></h2>
-                    ${converter.makeHtml(blog.content)} 
-
-                    
+                    ${converter.makeHtml(blog.content)}                     
                 </div>
             </li>
             `;           
@@ -33,8 +31,9 @@ $.ajax({
             hljs.highlightBlock(block);
         });
         $(".tmlabel").each(function(){
-             $(this).children('*:gt(3)').remove();
-             $(this).append('<p>....<p><a href="" class="pull-right">阅读全文...</a>');
+            $(this).children('*:gt(3)').remove();
+            var href = $(this).children('h2').children('a').attr('href');
+            $(this).append(`<a href="${href}" class="pull-right">阅读全文</a>`);
         });
         
         $("#main").fadeIn();
