@@ -1,0 +1,14 @@
+/* 
+* @Author: anchen
+* @Date:   2016-12-16 08:50:01
+* @Last Modified by:   anchen
+* @Last Modified time: 2016-12-16 09:29:42
+*/
+body{
+    background: url(/static/img/bg2.jpg) no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+#main form{
+    margin-top: 30px;
+}
