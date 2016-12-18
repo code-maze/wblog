@@ -76,8 +76,8 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.Text(), nullable=False)
-    pubTime = db.Column(db.Float, index=True)
-    user_id = db.Column(db.BigInteger, nullable=False)
+    pubTime = db.Column(db.BigInteger, index=True)
+    user_id = db.Column(db.Integer, nullable=False)
 
     def __init__(self, title, content, uid):
         self.title = title
